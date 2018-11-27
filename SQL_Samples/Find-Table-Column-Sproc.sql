@@ -1,4 +1,4 @@
-/****This finds column and table names****/
+/*This finds column and table names*/
 USE [some_db]
 GO
 
@@ -44,7 +44,7 @@ ORDER BY 1
 SELECT [name] FROM sysobjects where id in (
 SELECT id FROM syscolumns where name like @SearchString)  
 
-/****Tells you the data type of the column****/
+/*Tells you the data type of the column*/
 USE [some_db]
 GO
 
@@ -54,7 +54,7 @@ SELECT *
    AND table_name LIKE 'Some_Table' 
    AND column_name LIKE '%Some_Column%' 
 
-/****Tells you the primary and foreign keys of a table****/
+/*Tells you the primary and foreign keys of a table*/
 USE [some_db]
 GO
 
@@ -70,7 +70,7 @@ SELECT
  WHERE 1=1
    AND INFORMATION_SCHEMA.KEY_COLUMN_USAGE.TABLE_NAME LIKE 'Some_Table' 
 
-/****This tells you all columns of a table AND which columns are primary or foreign keys****/
+/*This tells you all columns of a table AND which columns are primary or foreign keys*/
 USE [some_db]
 GO
 
@@ -142,3 +142,21 @@ LEFT JOIN INFORMATION_SCHEMA.TABLE_CONSTRAINTS WITH (NOLOCK)
  WHERE 1=1
    AND INFORMATION_SCHEMA.COLUMNS.TABLE_NAME LIKE @TableName
 ORDER BY INFORMATION_SCHEMA.COLUMNS.ORDINAL_POSITION;
+
+
+/*This finds sprocs in jobs*/
+SELECT j.job_id
+     , s.srvname
+     , j.name
+     , js.step_id
+     , js.command
+     , j.enabled 
+  FROM dbo.sysjobs j
+  JOIN dbo.sysjobsteps js
+    ON js.job_id = j.job_id 
+  JOIN master.dbo.sysservers s
+    ON s.srvid = j.originating_server_id
+ WHERE 1=1
+   AND js.command LIKE N'%CRM%'
+   AND enabled = 1
+   
