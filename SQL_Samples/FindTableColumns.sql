@@ -1,7 +1,8 @@
---This finds column and table names
+/****This finds column and table names****/
 USE [some_db]
 GO
 
+--Find Tables
 SELECT
 t.name AS TableName
 ,c.name AS ColumnName
@@ -11,30 +12,23 @@ JOIN
 	sys.tables t
 	ON c.object_id = t.object_id
 WHERE 1=1
-	AND t.name LIKE '%code%'
-	--AND C.name LIKE '%degree%'
+	AND t.name LIKE '%some_table%'
+	--AND C.name LIKE '%some_column%'
 ORDER BY 1
-/************/
+
+--Find Columns
+
 SELECT  
        tableName
      , columnName
   FROM syCode
  WHERE 1=1
-   --AND tableName LIKE '%trans%'
-   AND columnName LIKE '%degree%'
-
-SELECT  
-       tableName
-     , columnName
-  FROM syBitCode
- WHERE 1=1
-   --AND tableName LIKE '%trans%'
-   AND columnName LIKE '%degree%'
+   --AND tableName LIKE '%some_table%'
+   AND columnName LIKE '%some_column%'
 
 --This one looks at objects so it will catch views
 
-DECLARE @SearchString VARCHAR(MAX) = '%DegreeLevel%'
-
+DECLARE @SearchString VARCHAR(MAX) = '%some_string%'
 
 SELECT
 	   t.name AS TableName
@@ -47,18 +41,18 @@ SELECT
 	OR c.name LIKE @SearchString
 ORDER BY 1
 
-select [name] from sysobjects where id in (
-select id from syscolumns where name like @SearchString)  
+SELECT [name] FROM sysobjects where id in (
+SELECT id FROM syscolumns where name like @SearchString)  
 
 /****Tells you the data type of the column****/
-USE CampusVue
+USE [some_db]
 GO
 
-select * 
-  from information_Schema.columns WITH (NOLOCK)
+SELECT * 
+  FROM information_Schema.columns WITH (NOLOCK)
  WHERE 1=1
-   AND table_name LIKE 'AdCourse' 
-   and column_name LIKE 'Code%' 
+   AND table_name LIKE 'Some_Table' 
+   AND column_name LIKE '%Some_Column%' 
 
 /****Tells you the primary and foreign keys of a table****/
 USE [some_db]
@@ -74,13 +68,13 @@ SELECT
    AND INFORMATION_SCHEMA.TABLE_CONSTRAINTS.CONSTRAINT_SCHEMA = INFORMATION_SCHEMA.KEY_COLUMN_USAGE.CONSTRAINT_SCHEMA
    AND INFORMATION_SCHEMA.TABLE_CONSTRAINTS.CONSTRAINT_NAME =	INFORMATION_SCHEMA.KEY_COLUMN_USAGE.CONSTRAINT_NAME
  WHERE 1=1
-   AND INFORMATION_SCHEMA.KEY_COLUMN_USAGE.TABLE_NAME LIKE 'AdCourse' 
+   AND INFORMATION_SCHEMA.KEY_COLUMN_USAGE.TABLE_NAME LIKE 'Some_Table' 
 
-/*This tells you all columns of a table AND which columns are primary or foreign keys*/
+/****This tells you all columns of a table AND which columns are primary or foreign keys****/
 USE [some_db]
 GO
 
-DECLARE @TableName VARCHAR(40) = 'AdEnrollDegreeAuditCourseCategory'
+DECLARE @TableName VARCHAR(40) = 'Some_Table'
 SELECT DISTINCT
   INFORMATION_SCHEMA.COLUMNS.TABLE_CATALOG
 , INFORMATION_SCHEMA.COLUMNS.TABLE_SCHEMA
@@ -117,7 +111,7 @@ ORDER BY INFORMATION_SCHEMA.COLUMNS.ORDINAL_POSITION
 USE [some_db]
 GO
 
-DECLARE @TableName VARCHAR(40) = 'CmDocument'
+DECLARE @TableName VARCHAR(40) = 'Some_Table'
 SELECT DISTINCT
   INFORMATION_SCHEMA.COLUMNS.TABLE_CATALOG
 , INFORMATION_SCHEMA.COLUMNS.TABLE_SCHEMA
@@ -148,4 +142,3 @@ LEFT JOIN INFORMATION_SCHEMA.TABLE_CONSTRAINTS WITH (NOLOCK)
  WHERE 1=1
    AND INFORMATION_SCHEMA.COLUMNS.TABLE_NAME LIKE @TableName
 ORDER BY INFORMATION_SCHEMA.COLUMNS.ORDINAL_POSITION;
-
