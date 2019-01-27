@@ -6,8 +6,10 @@ This is a project I worked on in a database modeling class of a real-world buisn
 
 **BRD_PharmacistKPI_DatabaseModel_v1.0.pdf:** This is the business requirements document.
 
-**DD_PharmacistKPI_DatabaseModel_Schema_v1.0.png:** This is an image file of the database schema.
+**DD_PharmacistKPI_DatabaseModel_Schema_v1.0.png:** This is an image file of the database schema.*
 
 **DD_PharmacistKPI_DatabaseModel_Script_v1.0.sql:** This is the SQL script to create the database and tables.
 
-**DD_PharmacistKPI_DatabaseModel_v1.0.pdf:** This is the design document.
+**DD_PharmacistKPI_DatabaseModel_v1.0.pdf:** This is the design document.*
+
+*Note: There are a couple of column changes to the Patient and Appointments table in the BRD and DD that are not reflected in the schema. I did not have access to the original file and currently do not have access to Visio to recreate the file.
