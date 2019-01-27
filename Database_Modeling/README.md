@@ -8,4 +8,6 @@ This is a project I worked on in a database modeling class of a real-world buisn
 
 **DD_PharmacistKPI_DatabaseModel_Schema_v1.0.png:** This is an image file of the database schema.
 
+**DD_PharmacistKPI_DatabaseModel_Script_v1.0.sql:** This is the SQL script to create the database and tables.
+
 **DD_PharmacistKPI_DatabaseModel_v1.0.pdf:** This is the design document.
