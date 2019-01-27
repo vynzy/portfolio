@@ -12,4 +12,4 @@ This is a project I worked on in a database modeling class of a real-world buisn
 
 **DD_PharmacistKPI_DatabaseModel_v1.0.pdf:** This is the design document.*
 
-*Note: There are a couple of column changes to the Patient and Appointments table in the BRD and DD that are not reflected in the schema. I did not have access to the original file and currently do not have access to Visio to recreate the file.
+*Note: There are a couple of column changes to the Patient and Appointments table in the BRD and DD that are not reflected in the schema. I currently do not have access to Visio to update the schema.
